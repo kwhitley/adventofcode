@@ -1,0 +1,33 @@
+{
+  "name": "aoc-2021",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --verbose --coverage .",
+    "dev": "jest --verbose --watch ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kwhitley/aoc-2021.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kwhitley/aoc-2021/issues"
+  },
+  "homepage": "https://github.com/kwhitley/aoc-2021#readme",
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
+  },
+  "dependencies": {
+    "jest": "^27.4.3",
+    "supergeneric": "^2.0.10"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.4",
+    "babel-jest": "^27.4.2"
+  }
+}
