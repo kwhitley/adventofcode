@@ -1,38 +1,41 @@
-import * as day1 from '.'
-import { numberify } from '../utils/numberify'
+import * as day2 from '.'
 import { input } from './input'
 
-const sample = numberify(`199
-200
-208
-210
-200
-207
-240
-269
-260
-263`)
+const sample = day2.commandify(`forward 5
+down 5
+forward 8
+up 3
+down 8
+forward 2`)
 
-const actual = numberify(input)
+const actual = day2.commandify(input)
 
 describe('DAY 2', () => {
-  // describe('PART 1', () => {
-  //   // it('should reposition according to commands', () => {
-  //   //   expect(day1.detectIncreases(sample)).toBe(7)
-  //   // })
+  describe('PART 1', () => {
+    it('should reposition according to commands', () => {
+      const [x, y] = day2.pilot(sample)
 
-  //   // it('TEST', () => {
-  //   //   expect(day1.detectIncreases(actual)).toBe(1195)
-  //   // })
-  // })
+      expect(x * y).toBe(150)
+    })
 
-  // describe('PART 2', () => {
-  //   // it('should count the number of increases', () => {
-  //   //   expect(day1.sweep(sample)).toBe(5)
-  //   // })
+    it('TEST', () => {
+      const [x, y] = day2.pilot(actual)
 
-  //   // it('TEST', () => {
-  //   //   expect(day1.sweep(actual)).toBe(1235)
-  //   // })
-  // })
+      expect(x * y).toBe(2091984)
+    })
+  })
+
+  describe('PART 2', () => {
+    it('should reposition according to commands', () => {
+      const [x, y] = day2.pilotV2(sample)
+
+      expect(x * y).toBe(900)
+    })
+
+    it('TEST', () => {
+      const [x, y] = day2.pilotV2(actual)
+
+      expect(x * y).toBe(2086261056)
+    })
+  })
 })
