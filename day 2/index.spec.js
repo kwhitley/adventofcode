@@ -1,6 +1,7 @@
 import * as day2 from '.'
 import { input } from './input'
 
+// SAMPLE INPUT
 const sample = day2.commandify(`forward 5
 down 5
 forward 8
@@ -8,6 +9,7 @@ up 3
 down 8
 forward 2`)
 
+// ACTUAL INPUT
 const actual = day2.commandify(input)
 
 describe('DAY 2', () => {
@@ -18,7 +20,7 @@ describe('DAY 2', () => {
       expect(x * y).toBe(150)
     })
 
-    it('TEST', () => {
+    it('FINAL', () => {
       const [x, y] = day2.pilot(actual)
 
       expect(x * y).toBe(2091984)
@@ -32,7 +34,7 @@ describe('DAY 2', () => {
       expect(x * y).toBe(900)
     })
 
-    it('TEST', () => {
+    it('FINAL', () => {
       const [x, y] = day2.pilotV2(actual)
 
       expect(x * y).toBe(2086261056)

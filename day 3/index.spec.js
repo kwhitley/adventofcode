@@ -1,6 +1,7 @@
 import * as day3 from '.'
 import { input } from './input'
 
+// SAMPLE INPUT
 const sample = `00100
 11110
 10110
@@ -14,6 +15,7 @@ const sample = `00100
 00010
 01010`.split('\n')
 
+// ACTUAL INPUT
 const actual = input.split('\n')
 
 describe('DAY 3', () => {
@@ -25,7 +27,7 @@ describe('DAY 3', () => {
       expect(gamma * episilon).toBe(198)
     })
 
-    it('TEST', () => {
+    it('FINAL', () => {
       const gamma = day3.getGamma(actual)
       const episilon = day3.getEpsilon(actual)
 
@@ -41,7 +43,7 @@ describe('DAY 3', () => {
       expect(oxygen * co2).toBe(230)
     })
 
-    it('TEST', () => {
+    it('FINAL', () => {
       const oxygen = day3.getOxygen(actual)
       const co2 = day3.getCO2(actual)
 

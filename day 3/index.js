@@ -1,18 +1,5 @@
 import { sum } from 'supergeneric'
 
-const inputs = `00100
-11110
-10110
-10111
-10101
-01111
-00111
-11100
-10000
-11001
-00010
-01010`.split('\n')
-
 export const getGamma = inputs => parseInt(inputs
                                             .reduce((acc, input, i) => acc.map((v, i) => v += Number(input[i])), Array(inputs[0].length).fill(0))
                                             .map(v => v > inputs.length / 2 ? 1 : 0)
