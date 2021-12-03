@@ -16,8 +16,8 @@ const sample = `00100
 
 const actual = input.split('\n')
 
-describe('DAY 2', () => {
-  describe('PART 1', () => {
+describe('DAY 3', () => {
+  describe('part 1', () => {
     it('should get gamma/epsilon from inputs', () => {
       const gamma = day3.getGamma(sample)
       const episilon = day3.getEpsilon(sample)
@@ -33,7 +33,7 @@ describe('DAY 2', () => {
     })
   })
 
-  describe('PART 2', () => {
+  describe('part2 2', () => {
     it('should get oxygen/co2 from inputs', () => {
       const oxygen = day3.getOxygen(sample)
       const co2 = day3.getCO2(sample)

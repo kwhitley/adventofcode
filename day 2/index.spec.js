@@ -11,7 +11,7 @@ forward 2`)
 const actual = day2.commandify(input)
 
 describe('DAY 2', () => {
-  describe('PART 1', () => {
+  describe('part 1', () => {
     it('should reposition according to commands', () => {
       const [x, y] = day2.pilot(sample)
 
@@ -25,7 +25,7 @@ describe('DAY 2', () => {
     })
   })
 
-  describe('PART 2', () => {
+  describe('part 2', () => {
     it('should reposition according to commands', () => {
       const [x, y] = day2.pilotV2(sample)
 

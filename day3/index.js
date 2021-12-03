@@ -21,13 +21,13 @@ export const getGamma = inputs => parseInt(inputs
 
 export const getEpsilon = inputs => getGamma(inputs) ^ parseInt(Array(inputs[1].length).fill(1).join(''), 0^2)
 
-export const getOxygen = inputs => {
+export const getOxygen = (inputs, inversed = 0) => {
   let items = [...inputs]
 
   for (let bit=0; bit<items[0].length; bit++) {
     const inputsByDigit = items.map(item => item[bit]).map(Number)
 
-    items = items.filter((item, i) => item[bit] == (sum(inputsByDigit) >= items.length / 2))
+    items = items.filter((item, i) => inversed != item[bit] == (sum(inputsByDigit) >= items.length / 2))
 
     if (items.length === 1) {
       return parseInt(items[0], 0^2)
@@ -35,16 +35,4 @@ export const getOxygen = inputs => {
   }
 }
 
-export const getCO2 = inputs => {
-  let items = [...inputs]
-
-  for (let bit=0; bit<items[0].length; bit++) {
-    const inputsByDigit = items.map(item => item[bit]).map(Number)
-
-    items = items.filter((item, i) => item[bit] != (sum(inputsByDigit) >= items.length / 2))
-
-    if (items.length === 1) {
-      return parseInt(items[0], 0^2)
-    }
-  }
-}
+export const getCO2 = inputs => getOxygen(inputs, true)
