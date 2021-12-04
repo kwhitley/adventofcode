@@ -16,15 +16,11 @@ export const setup = input => {
 }
 
 export const play = (input, part2 = false) => {
-  const [draws, boards] = setup(input)
-  let available = [...boards]
+  let [draws, boards] = setup(input)
 
-  d: for (const draw of draws) {
+  for (const draw of draws) {
     for (const board of boards) {
-      let index = board.indexOf(draw)
-
-      if (index === -1) continue
-
+      const index = board.indexOf(draw)
       const col = index % 5
       const row = Math.floor(index / 5)
       board[index] = null
@@ -32,14 +28,10 @@ export const play = (input, part2 = false) => {
       board.plays.cols[col]++
 
       if (board.plays.cols[col] > 4 || board.plays.rows[row] > 4) {
-        available = available.filter(b => b !== board)
+        boards = boards.filter(b => b !== board)
 
-        if (!part2 || !available.length) {
-          return [
-            draw,
-            sum(board),
-          ]
-        }
+        if (!part2 || !boards.length)
+          return [draw, sum(board)]
       }
     }
   }
