@@ -1,6 +1,6 @@
 import { sum } from 'supergeneric'
 
-export const play = (input, part2 = false) => {
+export const play = (input, part2) => {
   let [draws, ...boards] = input.split('\n\n')
   draws = draws.split(',').map(Number)
   boards = boards.map(b => b.trim().replace(/\s+/gi, ' ').split(' ').map(Number))
