@@ -24,7 +24,7 @@ const sample = `7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,
 
 describe('DAY 4', () => {
   describe('part 1', () => {
-    it('should get score and winning draw from plays and boards input', () => {
+    it('should get score and winning draw of first winning board', () => {
       const [ draw, score ] = day4.play(sample)
 
       expect(draw * score).toBe(4512)
@@ -33,23 +33,21 @@ describe('DAY 4', () => {
     it('FINAL', () => {
       const [ draw, score ] = day4.play(actual)
 
-      expect(draw * score).toBe(4512)
+      expect(draw * score).toBe(28082)
     })
   })
 
-  // describe('part2 2', () => {
-  //   it('should get oxygen/co2 from inputs', () => {
-  //     const oxygen = day4.getOxygen(sample)
-  //     const co2 = day4.getCO2(sample)
+  describe('part2 2', () => {
+    it('should get score and winning draw of last winning board', () => {
+      const [ draw, score ] = day4.play(sample, true)
 
-  //     expect(oxygen * co2).toBe(230)
-  //   })
+      expect(draw * score).toBe(1924)
+    })
 
-  //   it('FINAL', () => {
-  //     const oxygen = day4.getOxygen(actual)
-  //     const co2 = day4.getCO2(actual)
+    it('FINAL', () => {
+      const [ draw, score ] = day4.play(actual, true)
 
-  //     expect(oxygen * co2).toBe(2372923)
-  //   })
-  // })
+      expect(draw * score).toBe(8224)
+    })
+  })
 })
