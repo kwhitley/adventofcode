@@ -1,9 +1,9 @@
-import { numbers, sum } from 'supergeneric'
+import { sum } from 'supergeneric'
 
 export const play = (input, part2 = false) => {
   let [draws, ...boards] = input.split('\n\n')
-  draws = draws.split(',').map(numbers)
-  boards = boards.map(b => b.trim().replace(/\s+/gi, ' ').split(' ').map(numbers))
+  draws = draws.split(',').map(Number)
+  boards = boards.map(b => b.trim().replace(/\s+/gi, ' ').split(' ').map(Number))
 
   for (const board of boards) {
     board.plays = {
@@ -15,8 +15,7 @@ export const play = (input, part2 = false) => {
   for (const draw of draws) {
     for (const board of boards) {
       const index = board.indexOf(draw)
-      const col = index % 5
-      const row = Math.floor(index / 5)
+      const [row, col] = [Math.floor(index / 5), index % 5]
       board[index] = null
       board.plays.rows[row]++
       board.plays.cols[col]++
