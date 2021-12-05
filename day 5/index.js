@@ -1,13 +1,10 @@
-export const findIntersections = (input, size = 10) => {
+export const findIntersections = (input, size = 10, part2) => {
   const lines = input
                   .split('\n')
                   .map(line => line.split(/[^\d]+/))
                   .map(coords => coords.map(Number))
 
   const map = Array(size).fill(0).map(() => Array(size).fill(0))
-
-  // console.log('lines', lines)
-
 
   for (const [x1, y1, x2, y2] of lines) {
     if (x1 === x2 || y1 === y2) {
@@ -20,12 +17,9 @@ export const findIntersections = (input, size = 10) => {
     }
   }
 
+  if (part2) {
+    console.log(map.map(line => line.join('')).join('\n'))
+  }
 
-
-  // console.log(map.map(line => line.join('')).join('\n'))
-
-  const intersections = map.flat().filter(v => v > 1).length
-  // console.log('intersections', intersections)
-
-  return intersections
+  return map.flat().filter(v => v > 1).length
 }
