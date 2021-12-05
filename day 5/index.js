@@ -1,5 +1,4 @@
-export const findIntersections = (input, part2) => {
-  const points = new Set()
+export const findIntersections = (input, part2, points = {}) => {
   const intersections = new Set()
   const lines = input
                   .split('\n')
@@ -13,9 +12,8 @@ export const findIntersections = (input, part2) => {
       for (let t=0; t<=ticks; t++) {
         const coordinates = `${x1 + t * dx},${y1 + t * dy}`
 
-        points.has(coordinates)
-        ? intersections.add(coordinates)
-        : points.add(coordinates)
+        points[coordinates] && intersections.add(coordinates)
+        points[coordinates] = true
       }
     }
   }
