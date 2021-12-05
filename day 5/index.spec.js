@@ -22,7 +22,7 @@ describe('DAY 5', () => {
     })
 
     it('FINAL', () => {
-      const positions = day4.findIntersections(actual, 999)
+      const positions = day4.findIntersections(actual)
 
       expect(positions).toBe(5092)
     })
@@ -30,15 +30,15 @@ describe('DAY 5', () => {
 
   describe('part2', () => {
     it('should get number of overlapping positions', () => {
-      const positions = day4.findIntersections(sample, 10, true)
+      const positions = day4.findIntersections(sample, true)
 
       expect(positions).toBe(12)
     })
 
-    // it('FINAL', () => {
-    //   const [ draw, score ] = day4.play(actual, true)
+    it('FINAL', () => {
+      const positions = day4.findIntersections(actual, true)
 
-    //   expect(draw * score).toBe(8224)
-    // })
+      expect(positions).toBe(20484)
+    })
   })
 })

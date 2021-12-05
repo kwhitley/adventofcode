@@ -1,25 +1,25 @@
-export const findIntersections = (input, size = 10, part2) => {
+export const findIntersections = (input, part2) => {
+  const points = new Set()
+  const intersections = new Set()
   const lines = input
                   .split('\n')
                   .map(line => line.split(/[^\d]+/))
                   .map(coords => coords.map(Number))
 
-  const map = Array(size).fill(0).map(() => Array(size).fill(0))
-
   for (const [x1, y1, x2, y2] of lines) {
-    if (x1 === x2 || y1 === y2) {
-      // console.log('parsing line', [x1, y1, x2, y2])
-      for (let y=Math.min(y1, y2); y<=Math.max(y1, y2); y++) {
-        for (let x=Math.min(x1, x2); x<=Math.max(x1, x2); x++) {
-          map[y][x]++
-        }
+    const ticks = Math.max(Math.abs(x1 - x2), Math.abs(y1 - y2))
+    const [dx, dy] = [(x2 - x1)/ticks, (y2 - y1)/ticks]
+
+    if (!dx || !dy || part2) {
+      for (let t=0; t<=ticks; t++) {
+        const coordinates = `${x1 + t * dx},${y1 + t * dy}`
+
+        points.has(coordinates)
+        ? intersections.add(coordinates)
+        : points.add(coordinates)
       }
     }
   }
 
-  if (part2) {
-    console.log(map.map(line => line.join('')).join('\n'))
-  }
-
-  return map.flat().filter(v => v > 1).length
+  return intersections.size
 }
