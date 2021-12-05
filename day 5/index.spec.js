@@ -29,7 +29,7 @@ describe('DAY 5', () => {
   })
 
   describe('part2', () => {
-    it('should get number of overlapping positions', () => {
+    it('should get number of overlapping positions, including diagonals', () => {
       const positions = day4.findIntersections(sample, true)
 
       expect(positions).toBe(12)
