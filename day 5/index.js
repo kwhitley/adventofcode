@@ -3,8 +3,7 @@ export const findIntersections = (input, part2) => {
   const intersections = new Set()
   const lines = input
                   .split('\n')
-                  .map(line => line.split(/[^\d]+/))
-                  .map(coords => coords.map(Number))
+                  .map(line => line.split(/[^\d]+/).map(Number))
 
   for (const [x1, y1, x2, y2] of lines) {
     const ticks = Math.max(Math.abs(x1 - x2), Math.abs(y1 - y2))
