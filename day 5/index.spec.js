@@ -29,10 +29,10 @@ describe('DAY 5', () => {
   })
 
   describe('part2', () => {
-    it('should get number of overlapping positions including diagonals', () => {
-      const [ draw, score ] = day4.play(sample, true)
+    it('should get number of overlapping positions', () => {
+      const positions = day4.findIntersections(sample, 10, true)
 
-      expect(draw * score).toBe(12)
+      expect(positions).toBe(12)
     })
 
     // it('FINAL', () => {
