@@ -2994,10 +2994,10 @@ strip-final-newline@^2.0.0:
   resolved "https://registry.yarnpkg.com/strip-final-newline/-/strip-final-newline-2.0.0.tgz#89b852fb2fcbe936f6f4b3187afb0a12c1ab58ad"
   integrity sha512-BrpvfNAE3dcvq7ll3xVumzjKjZQ5tI1sEUIKr3Uoks0XUl45St3FlatVqef9prk4jRDzhW6WZg+3bk93y6pLjA==
 
-supergeneric@^2.0.10:
-  version "2.0.10"
-  resolved "https://registry.yarnpkg.com/supergeneric/-/supergeneric-2.0.10.tgz#c14900d1413e98d7bb14c508ea51f8f405cd6660"
-  integrity sha512-jnNsIy+JVCe88uoohTM2TqSqKmIPoQLff31We1H9pukgIGy2Vq6jo+wOXM3P6Q+PucOuqqBpnlIyEqMWfGATUQ==
+supergeneric@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/supergeneric/-/supergeneric-2.1.0.tgz#830254889e79de869dfddda90d9c03f0682ed74b"
+  integrity sha512-sWoMiLDWPbB/vdf0OTqRluzT9GaU7IMYHhe0wqNPALtIL2Z9GfSW22Xp/EaM2l9FVPyf+M1Ldb5TM8OhiViyjw==
 
 supports-color@^5.3.0:
   version "5.5.0"

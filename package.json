@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "jest": "^27.4.3",
-    "supergeneric": "^2.0.10"
+    "supergeneric": "^2.1.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.16.4",

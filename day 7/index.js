@@ -1,4 +1,4 @@
-import { average, median, sum } from 'supergeneric'
+import { average, median, range, sum } from 'supergeneric'
 
 export const reposition = (positions) => {
   positions = positions.split(',').map(Number)
@@ -11,10 +11,7 @@ export const reposition = (positions) => {
 export const reposition2 = (positions) => {
   positions = positions.split(',').map(Number)
 
-  let fuel = Array
-              .from({ length: 1500 }, (_, i) => i)
-              .reduce((acc, i) => (acc[i] = acc[i-1]+i) && acc || acc, { [-1]: 0 })
-
+  const fuel = range(1500).reduce((acc, i) => (acc[i] = acc[i-1]+i) && acc || acc, { [-1]: 0 })
   const target = average(positions)|0
   const bestFuelA = sum(positions.map(p => fuel[Math.abs(p - target)]))
   const bestFuelB = sum(positions.map(p => fuel[Math.abs(p - target - 1)]))
