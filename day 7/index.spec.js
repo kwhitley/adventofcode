@@ -22,14 +22,13 @@ describe('DAY 7', () => {
 
   describe('part2', () => {
     it('should get improved fuel and position', () => {
-      const [position, fuel] = day7.reposition2(sample)
+      const fuel = day7.reposition2(sample)
 
-      expect(position).toBe(5)
       expect(fuel).toBe(168)
     })
 
     it('FINAL', () => {
-      const [position, fuel] = day7.reposition2(actual)
+      const fuel = day7.reposition2(actual)
 
       expect(fuel).toBe(101268110)
     })
