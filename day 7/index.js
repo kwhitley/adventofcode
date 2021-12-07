@@ -11,9 +11,8 @@ export const reposition = (positions) => {
 export const reposition2 = (positions) => {
   positions = positions.split(',').map(Number)
 
-  let fuel = Array(1500)
-              .fill(0)
-              .map((v, i) => i)
+  let fuel = Array
+              .from({ length: 1500 }, (_, i) => i)
               .reduce((acc, i) => (acc[i] = acc[i-1]+i) && acc || acc, { [-1]: 0 })
 
   const target = average(positions)|0
