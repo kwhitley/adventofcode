@@ -32,13 +32,13 @@ describe('DAY 8', () => {
 
   describe('part2', () => {
     it('should fully decode outputs', () => {
-      const output = day8.decode2(sample1)
+      const output = day8.decode(sample1, true)
 
       expect(output).toEqual(5353)
     })
 
     it('FINAL', () => {
-      const output = day8.decode2(actual)
+      const output = day8.decode(actual, true)
 
       expect(output).toEqual(975706)
     })
