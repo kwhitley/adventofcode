@@ -11,17 +11,17 @@ export const decode = (input, part2) => {
           .reduce((score, [ signal, output ]) => {
             if (!part2) return score + sum(output.map(d => +[2, 3, 4, 7].includes(d.length)))
 
-            const one = signal.splice(signal.findIndex(d => d.length === 2), 1)[0]
-            const three = signal.splice(signal.findIndex(d => d.length === 5 && contains(d, one)), 1)[0]
-            const four = signal.splice(signal.findIndex(d => d.length === 4), 1)[0]
-            const seven = signal.splice(signal.findIndex(d => d.length === 3), 1)[0]
-            const eight = signal.splice(signal.findIndex(d => d.length === 7), 1)[0]
-            const nine = signal.splice(signal.findIndex(d => d.length === 6 && contains(d, four)), 1)[0]
-            const five = signal.splice(signal.findIndex(d => d.length === 5 && contains(d, diff(four, one))), 1)[0]
-            const two = signal.splice(signal.findIndex(d => d.length === 5 && contains(d, diff(eight, five))), 1)[0]
-            const six = signal.splice(signal.findIndex(d => d.length === 6 && contains(d, five)), 1)[0]
+            const extract = (length, pred = () => true) => signal.splice(signal.findIndex(d => d.length === length && pred(d)), 1)[0]
+            const one = extract(2)
+            const three = extract(5, d => contains(d, one))
+            const four = extract(4)
+            const seven = extract(3)
+            const eight = extract(7)
+            const nine = extract(6, d => contains(d, four))
+            const five = extract(5, d => contains(d, diff(four, one)))
+            const two = extract(5, d => contains(d, diff(eight, five)))
+            const six = extract(6, d => contains(d, five))
             const zero = signal[0]
-
             const decodeDigit = digit => [zero, one, two, three, four, five, six, seven, eight, nine]
                                             .findIndex(d => d.length === digit.length && contains(d, digit))
 
