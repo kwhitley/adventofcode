@@ -9,17 +9,17 @@ export const decode = (input, part2) => {
           .map(entry => entry.split(/[^\w]+/gi))
           .map(entry => [entry.slice(0, 10), entry.slice(-4)])
           .reduce((score, [ signal, output ]) => {
-            if (!part2) return score + sum(output.map(d => +[2, 3, 4, 7].includes(d.length)))
+            if (!part2) return score + sum(output.map(d => [2, 3, 4, 7].includes(d.length)))
 
-            const extract = (length, pred = () => true) => signal.splice(signal.findIndex(d => d.length === length && pred(d)), 1)[0]
+            const extract = (length, pred = () => 1) => signal.splice(signal.findIndex(d => d.length === length && pred(d)), 1)[0]
             const one = extract(2)
-            const three = extract(5, d => contains(d, one))
             const four = extract(4)
             const seven = extract(3)
             const eight = extract(7)
             const nine = extract(6, d => contains(d, four))
             const five = extract(5, d => contains(d, diff(four, one)))
             const two = extract(5, d => contains(d, diff(eight, five)))
+            const three = extract(5)
             const six = extract(6, d => contains(d, five))
             const zero = signal[0]
             const decodeDigit = digit => [zero, one, two, three, four, five, six, seven, eight, nine]
