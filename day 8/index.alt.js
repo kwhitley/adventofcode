@@ -6,8 +6,7 @@ export const decode = (input, part2) => {
 
   return input
           .split('\n')
-          .map(entry => entry.split(/[^\w]+/gi))
-          .map(entry => [entry.slice(0, 10), entry.slice(-4)])
+          .map(entry => entry.split(' | ').map(s => s.split(' ')))
           .reduce((score, [ signal, output ]) => {
             if (!part2) return score + sum(output.map(d => [2, 3, 4, 7].includes(d.length)))
 
