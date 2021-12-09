@@ -19,21 +19,21 @@ describe('DAY 9', () => {
     it('FINAL', () => {
       const risk = day9.getRisk(actual)
 
-      expect(risk).toEqual(15)
+      expect(risk).toEqual(633)
     })
   })
 
-  // describe('part2', () => {
-  //   it('should fully decode outputs', () => {
-  //     const output = day9.decode(sample1, true)
+  describe('part 2', () => {
+    it('should get basins', () => {
+      const risk = day9.getRisk(sample, true)
 
-  //     expect(output).toEqual(5353)
-  //   })
+      expect(risk).toEqual(1134)
+    })
 
-  //   it('FINAL', () => {
-  //     const output = day9.decode(actual, true)
+    it('FINAL', () => {
+      const risk = day9.getRisk(actual, true)
 
-  //     expect(output).toEqual(975706)
-  //   })
-  // })
+      expect(risk).toEqual(1050192)
+    })
+  })
 })
