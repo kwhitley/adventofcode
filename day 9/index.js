@@ -6,9 +6,7 @@ export const getRisk = (input, part2, risk = 0, basins = []) => {
 
   for (let r=0; r<g.length; r++) {
     for (let c=0; c<g[r].length; c++) {
-      const adjacent = [g[r-1]?.[c], g[r]?.[c-1], g[r]?.[c+1], g[r+1]?.[c] ]
-
-      if (Math.min(...onlyNumbers(adjacent)) > g[r][c]) {
+      if (Math.min(...onlyNumbers([g[r-1]?.[c], g[r]?.[c-1], g[r]?.[c+1], g[r+1]?.[c]])) > g[r][c]) {
         risk += (g[r][c] + 1)
         const scanned = []
         const basin = []
