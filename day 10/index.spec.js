@@ -13,18 +13,16 @@ const sample = `[({(<(())[]>[[{[]{<()<>>
   <{([([[(<>()){}]>(<<{{
   <{([{{}}[<[[[<>{}]]]>[]]`
 
-const sample2 = `[({(<(())[]>[[{[]{<()<>>`
-
 describe('DAY 10', () => {
   describe('part 1', () => {
     it('should get score of corrupted lines', () => {
-      const answer = day10.run(sample)
+      const answer = day10.scan(sample)
 
       expect(answer).toEqual(26397)
     })
 
     it('FINAL', () => {
-      const answer = day10.run(actual)
+      const answer = day10.scan(actual)
 
       expect(answer).toEqual(265527)
     })
@@ -32,13 +30,13 @@ describe('DAY 10', () => {
 
   describe('part 2', () => {
     it('should get risk of heatmap', () => {
-      const answer = day10.run(sample, true)
+      const answer = day10.scan(sample, true)
 
       expect(answer).toEqual(288957)
     })
 
     it('FINAL', () => {
-      const answer = day10.run(actual, true)
+      const answer = day10.scan(actual, true)
 
       expect(answer).toEqual(3969823589)
     })
