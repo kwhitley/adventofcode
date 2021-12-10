@@ -5,11 +5,11 @@ export const scan = (input, part2, score = 0, autocompletes = []) => {
     const stack = []
 
     for (const c of line) {
-      const lut = {
-        '(': [')', 3],
-        '[': [']', 57],
-        '{': ['}', 1197],
-        '<': ['>', 25137],
+      const brackets = {
+        '(': ')',
+        '[': ']',
+        '{': '}',
+        '<': '>',
       }
 
       if (stack[0]?.[0] === c) {
@@ -17,10 +17,10 @@ export const scan = (input, part2, score = 0, autocompletes = []) => {
         continue
       }
 
-      if (lut[c]) {
-        stack.unshift(lut[c])
+      if (brackets[c]) {
+        stack.unshift(brackets[c])
       } else if (stack.length) {
-        score += Object.values(lut).find(i => i[0] === c)[1]
+        score += [3, 57, 1197, 25137][Object.values(brackets).indexOf(c)]
         continue outer
       }
     }
