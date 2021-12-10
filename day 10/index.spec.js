@@ -1,5 +1,5 @@
 import * as day10 from '.'
-import { input as actual } from './input'
+import actual from './input'
 
 // SAMPLE INPUT
 const sample = `[({(<(())[]>[[{[]{<()<>>
