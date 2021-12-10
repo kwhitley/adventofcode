@@ -29,7 +29,7 @@ describe('DAY 10', () => {
   })
 
   describe('part 2', () => {
-    it('should get risk of heatmap', () => {
+    it('should get median autocomplete score', () => {
       const answer = day10.scan(sample, true)
 
       expect(answer).toEqual(288957)
