@@ -13,7 +13,7 @@ const sample = `5483143223
 4846848554
 5283751526`
 
-describe('DAY 10', () => {
+describe('DAY 11', () => {
   describe('part 1', () => {
     it('should get score of corrupted lines', () => {
       const answer = day11.run(sample)

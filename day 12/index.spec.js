@@ -40,7 +40,7 @@ zg-he
 pj-fs
 start-RW`
 
-describe('DAY 10', () => {
+describe('DAY 12', () => {
   describe('part 1', () => {
     it('should find the number of valid paths through the cave', () => {
       const answer = day12.run(sample1)
@@ -83,7 +83,7 @@ describe('DAY 10', () => {
     it('FINAL', () => {
       const answer = day12.run(actual, true)
 
-      expect(answer).toEqual(144528)
+      expect(answer).toEqual(137948)
     })
   })
 })
