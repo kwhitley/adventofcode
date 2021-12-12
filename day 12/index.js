@@ -1,12 +1,14 @@
-import { median } from 'supergeneric'
+import { last, median } from 'supergeneric'
 
 export const run = (input, part2, paths = input.split('\n').map(l => l.split('-'))) => {
-  console.log('paths', paths)
   const map = {}
 
   for (const [from, to] of paths) {
     map[from] = map[from] || []
-    map[from].push(to)
+    if (to !== 'start') {
+      map[from].push(to)
+    }
+
 
     if (to !== 'end' && from !== 'start') {
       map[to] = map[to] || []
@@ -14,32 +16,32 @@ export const run = (input, part2, paths = input.split('\n').map(l => l.split('-'
     }
   }
 
-  // console.log('map', map)
-
   const validPaths = new Set()
 
-  const buildPath = (pathSoFar) => {
-    // console.log('building path', pathSoFar)
-    if (pathSoFar[pathSoFar.length-1] === 'end') {
+  const buildPath = (pathSoFar, duplicateVisit) => {
+    const lastPath = pathSoFar[pathSoFar.length-1]
+    const isSmallCave = lastPath.toLowerCase() === lastPath
+
+    if (lastPath === 'end') {
       return validPaths.add(pathSoFar)
     }
 
+    if (part2 && pathSoFar.slice(0, pathSoFar.length-1).includes(lastPath) && lastPath.toLowerCase() === lastPath) {
+      duplicateVisit = true
+    }
+
     const branches = map[pathSoFar[pathSoFar.length-1]]
-    // console.log('branches out are', branches)
 
-    const validBranches = branches.filter(b => b.toUpperCase() === b || !pathSoFar.includes(b))
+    const validBranches = branches.filter(b =>
+      b.toUpperCase() === b || !pathSoFar.includes(b) || (part2 && !duplicateVisit)
+    )
 
-    // console.log('valid branches', validBranches)
-
-    validBranches.map(b => buildPath([...pathSoFar, b]))
+    validBranches.map(b => {
+      buildPath([...pathSoFar, b], duplicateVisit)
+    })
   }
 
   buildPath(['start'])
 
-  // console.log('validPaths', validPaths)
-
-  // const followPath = (path, )
-
-  // console.log('map', map)
   return validPaths.size
 }
