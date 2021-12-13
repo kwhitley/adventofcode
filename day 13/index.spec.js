@@ -47,7 +47,7 @@ describe('DAY 12', () => {
 
   describe('part 2', () => {
     it('FINAL', () => {
-      console.log(day13.run(actual, 12, true))
+      console.log(day13.run(actual, 99, true))
 
       expect(true).toEqual(true) // not real answer - look at console log output
     })
