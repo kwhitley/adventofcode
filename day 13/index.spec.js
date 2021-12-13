@@ -26,13 +26,13 @@ fold along x=5`
 
 describe('DAY 12', () => {
   describe('part 1', () => {
-    it('should find an answer', () => {
+    it('should find how many dots after 1 pass', () => {
       const answer = day13.run(sample1, 1)
 
       expect(answer).toEqual(17)
     })
 
-    it('should get an answer', () => {
+    it('should find how many dots after 2 passes', () => {
       const answer = day13.run(sample1, 2)
 
       expect(answer).toEqual(16)
