@@ -3,7 +3,7 @@ import { numbers, sum } from 'supergeneric'
 export const run = (input, maxInstructions = 1, part2) => {
   const [dots, instructions] = input
                                 .split('\n\n')
-                                .map((set, i) => set.split('\n').map(line => line.replace(/^.*\s/, '').split(i ? '=' : ',').map(numbers)))
+                                .map(set => set.split('\n').map(line => line.split(/[,= ]/).slice(-2).map(numbers)))
   const maxY = Math.max(...dots.map(d => d[1]))
   const maxX = Math.max(...dots.map(d => d[0]))
   let grid = Array(((maxY+1)/2|0)*2+1).fill(0).map(() => Array(((maxX+1)/2|0)*2+1).fill(0))
