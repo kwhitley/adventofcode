@@ -12,18 +12,15 @@ export const run = (input, steps = 1, c, template = {}) => {
   }
 
   for (let step=0; step<steps; step++) {
-    const update = { ...template }
-
-    for (const [pair, count] of Object.entries(template)) {
+    template = Object.entries(template).reduce((acc, [pair, count, update = {...acc}]) => {
       if (c = rules[pair]) {
-        const [left, right] = pair.split('')
         update[pair] = (update[pair] || 0) - count
-        update[left+c] = (update[left+c] || 0) + count
-        update[c+right] = (update[c+right] || 0) + count
+        update[pair[0]+c] = (update[pair[0]+c] || 0) + count
+        update[c+pair[1]] = (update[c+pair[1]] || 0) + count
       }
-    }
 
-    template = update
+      return update
+    }, template)
   }
 
   let freq = Object.entries(template).filter(([pair, c]) => c).reduce((acc, [pair, c]) => {
