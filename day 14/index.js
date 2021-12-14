@@ -1,11 +1,11 @@
-import { numbers, sum } from 'supergeneric'
-
-export const run = (input, steps = 1, c) => {
-  let [base, rules] = input.split('\n\n').map((set, i) => i ? set.split('\n').map(l => l.split(' -> ')) : set)
-
-  let template = {}
-
-  rules = rules.reduce((acc, [pair, c]) => ({ ...acc, [pair]: c }), {})
+export const run = (input, steps = 1, c, template = {}) => {
+  let [base, rules] = input.split('\n\n').map((set, i) =>
+                                          i ? set
+                                            .split('\n')
+                                            .map(l => l.split(' -> '))
+                                            .reduce((acc, [pair, c]) => ({ ...acc, [pair]: c }), {})
+                                          : set
+                                        )
 
   for (let i=0; i<base.length-1; i++) {
     template[base.slice(i, i+2)] = (template[base.slice(i, i+2)] || 0) + 1
