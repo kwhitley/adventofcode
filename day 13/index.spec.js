@@ -24,7 +24,7 @@ const sample1 = `6,10
 fold along y=7
 fold along x=5`
 
-describe('DAY 12', () => {
+describe('DAY 13', () => {
   describe('part 1', () => {
     it('should find how many dots after 1 pass', () => {
       const answer = day13.run(sample1, 1)
@@ -45,11 +45,11 @@ describe('DAY 12', () => {
     })
   })
 
-  describe('part 2', () => {
-    it('FINAL', () => {
-      console.log(day13.run(actual, 99, true))
+  // describe('part 2', () => {
+  //   it('FINAL', () => {
+  //     console.log(day13.run(actual, 99, true))
 
-      expect(true).toEqual(true) // not real answer - look at console log output
-    })
-  })
+  //     expect(true).toEqual(true) // not real answer - look at console log output
+  //   })
+  // })
 })
