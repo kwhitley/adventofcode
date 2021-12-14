@@ -26,15 +26,22 @@ describe('DAY 14', () => {
     it('should do a thing', () => {
       const answer = challenge.run(sample1, 1)
 
-      expect(challenge.run(sample1, 1)[0]).toEqual('NCNBCHB')
-      expect(challenge.run(sample1, 2)[0]).toEqual('NBCCNBBBCBHCB')
-      expect(challenge.run(sample1, 3)[0]).toEqual('NBBBCNCCNBBNBNBBCHBHHBCHB')
-      expect(challenge.run(sample1, 4)[0]).toEqual('NBBNBNBBCCNBCNCCNBBNBBNBBBNBBNBBCBHCBHHNHCBBCBHCB')
-      expect(challenge.run(sample1, 10)[1]).toEqual(1588)
+      // expect(challenge.run(sample1, 1)[0]).toEqual('NCNBCHB')
+      // expect(challenge.run(sample1, 2)[0]).toEqual('NBCCNBBBCBHCB')
+      // expect(challenge.run(sample1, 3)[0]).toEqual('NBBBCNCCNBBNBNBBCHBHHBCHB')
+      // expect(challenge.run(sample1, 4)[0]).toEqual('NBBNBNBBCCNBCNCCNBBNBBNBBBNBBNBBCBHCBHHNHCBBCBHCB')
+      expect(challenge.run(sample1, 1)).toEqual(1588)
+      // expect(challenge.run(sample1, 10)).toEqual(1588)
     })
 
-    it('FINAL', () => {
-      expect(challenge.run(actual, 10)[1]).toEqual(2003)
-    })
+    // it('FINAL', () => {
+    //   expect(challenge.run(actual, 10)[1]).toEqual(2003)
+    // })
   })
+
+  // describe('part 2', () => {
+  //   it('should do a thing in this lifetime', () => {
+  //     expect(challenge.run(sample1, 10)[1]).toEqual(2188189693529)
+  //   })
+  // })
 })
