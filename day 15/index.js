@@ -25,16 +25,13 @@ export const run = (input, part2) => {
         const newY = y + dy
 
         if (newY >= 0 && newY <= bottom && newX <= right && newX >= 0) {
-          let weight = (grid[newY % height][newX % width] + (newY/height|0) + (newX/width|0))
-          if (weight > 9) {
-            weight = weight % 9
-          }
+          let weight = (grid[newY % height][newX % width] + (newY/height|0) + (newX/width|0) - 1) % 9 + 1
           queue.push([weight + c, newY, newX])
         }
 
       }
 
-      queue.sort((a, b) => a[0] > b[0] ? 1 : -1)
+      queue.sort((a, b) => a[0] > b[0] ? 1 : -1) // sort queue to ascending by cost
     }
   }
 
