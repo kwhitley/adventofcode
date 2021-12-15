@@ -1,11 +1,26 @@
 import { numbers } from 'supergeneric'
 
-export const run = (input, steps = 1) => {
-  const grid = input.split('\n').map(line => line.split('').map(numbers))
+export const run = (input, part2) => {
+  let grid = input.split('\n').map(line => line.split('').map(numbers))
+
+  if (part2) {
+    let width = grid[0].length
+    let height = grid.length
+
+    for (let y=0; y<5*height; y++) {
+      for (let x=0; x<5*width; x++) {
+        const risk = (y/height|0) + (x/width|0);
+        grid[y] = grid[y] || []
+        grid[y][x] = grid[y][x] || (grid[y%height][x%width] + risk)
+        if (grid[y][x] > 9) {
+          grid[y][x] = grid[y][x] % 9
+        }
+      }
+    }
+  }
 
   const bottom = grid.length - 1
   const right = grid[0].length - 1
-  const end = `${bottom}.${right}`
 
   const cost = {}
   const queue = [[0, 0, 0]]
@@ -32,5 +47,5 @@ export const run = (input, steps = 1) => {
     }
   }
 
-  return cost[end]
+  return cost[`${bottom}.${right}`]
 }

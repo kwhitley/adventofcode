@@ -28,13 +28,13 @@ describe('DAY 14', () => {
     })
   })
 
-  // describe('part 2', () => {
-  //   it('should do a thing in this lifetime', () => {
-  //     expect(challenge.run(sample1, 40)).toEqual(2188189693529)
-  //   })
+  describe('part 2', () => {
+    it('should do a thing, but bigger', () => {
+      expect(challenge.run(sample1, true)).toEqual(315)
+    })
 
-  //   it('FINAL', () => {
-  //     expect(challenge.run(actual, 40)).toEqual(2276644000111)
-  //   })
-  // })
+    // it('FINAL', () => {
+    //   expect(challenge.run(actual, true)).toEqual(2851)
+    // })
+  })
 })
