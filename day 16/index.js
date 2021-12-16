@@ -1,15 +1,5 @@
 import { sum } from 'supergeneric'
 
-function convertNumber(n, fromBase, toBase) {
-  if (fromBase === void 0) {
-    fromBase = 10
-  }
-  if (toBase === void 0) {
-    toBase = 10
-  }
-  return parseInt(n.toString(), fromBase).toString(toBase);
-}
-
 const hex2bin = hex => hex.split('').map(h => parseInt(h, 16).toString(2).padStart(4, '0')).join('')
 const bin2dec = bin => Number(parseInt(bin, 2).toString(10))
 
