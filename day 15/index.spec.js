@@ -17,7 +17,7 @@ const sample1 = `1163751742
 1293138521
 2311944581`
 
-describe('DAY 14', () => {
+describe('DAY 15', () => {
   describe('part 1', () => {
     it('should do a thing', () => {
       expect(challenge.run(sample1)).toEqual(40)
