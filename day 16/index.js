@@ -1,92 +1,87 @@
 import { sum } from 'supergeneric'
 
+// converts hex to a bit stream
 const hex2bin = hex => hex.split('').map(h => parseInt(h, 16).toString(2).padStart(4, '0')).join('')
+
+// converts bits to decimal
 const bin2dec = bin => Number(parseInt(bin, 2).toString(10))
 
-export const run = (input, part2) => {
-  const bin = hex2bin(input)
+// packet operations
+const operations = {
+  0: values => sum(values),
+  1: values => values.reduce((acc, v) => acc * v, 1),
+  2: values => Math.min(...values),
+  3: values => Math.max(...values),
+  5: ([a, b]) => a > b ? 1 : 0,
+  6: ([a, b]) => a < b ? 1 : 0,
+  7: ([a, b]) => a === b ? 1 : 0,
+}
+
+export const run = (input, part2, bin = hex2bin(input)) => {
   let cursor = 0
   let versionSum = 0
 
-  const read = (length, options = {}) => {
-    const {
-      leadingBit = 0
-    } = options
+  // internal function to read bits
+  const read = (length, leadingBit) => {
     const group = bin.slice(cursor, cursor+=length)
-    const lead = group.slice(0, leadingBit)
+    const done = group.slice(0, leadingBit)
     const tail = group.slice(leadingBit, length)
 
     return [
       leadingBit ? tail : bin2dec(tail),
-      bin2dec(lead),
+      !bin2dec(done),
     ]
   }
 
-  const operations = {
-    0: values => sum(values),
-    1: values => values.reduce((acc, v) => acc * v, 1),
-    2: values => Math.min(...values),
-    3: values => Math.max(...values),
-    5: ([a, b]) => a > b ? 1 : 0,
-    6: ([a, b]) => a < b ? 1 : 0,
-    7: ([a, b]) => a === b ? 1 : 0,
-  }
-
+  // internal function to readPackets (recursive)
   const readPacket = () => {
     const start = cursor
     const [version] = read(3)
-    versionSum += version // append to version sum just for reading it
     const [type] = read(3)
-    const isLiteral = type === 4
-    const isOperator = !isLiteral
+    const isOperator = type !== 4
     let value
+    versionSum += version // read version into versionSum
 
-    if (isLiteral) {
-      let lead, group, assembled = ''
+    if (!isOperator) {
+      let done, group, assembled = ''
       do {
-        [group, lead] = read(5, { leadingBit: 1 })
+        [group, done] = read(5, true) // leadingBit option turned on
         assembled += group
-      } while (lead)
+      } while (!done)
       value = bin2dec(assembled)
     } else {
-      const [lengthTypeID] = read(1)
-      value = []
+      const values = []
 
-      if (lengthTypeID) {
+      if (read(1)[0]) { // read length type ID bit
         const [numSubPackets] = read(11)
+
         for (let i=0; i<numSubPackets; i++) {
-          value.push(readPacket())
+          values.push(readPacket().value)
         }
       } else {
         const [subPacketsBitLength] = read(15)
         let totalLength = 0
-        let ticks = 0
 
-        while (totalLength < subPacketsBitLength || ticks++ > 100) {
-          const packet = readPacket()
-          value.push(packet)
-          totalLength += packet.length
+        while (totalLength < subPacketsBitLength) {
+          const { length, value } = readPacket()
+          values.push(value)
+          totalLength += length
         }
       }
 
-      const subValues = value.map(packet => packet.value)
-      value = operations[type](value.map(packet => packet.value))
+      value = operations[type](values)
     }
 
     return {
       version,
       type,
       value,
-      isLiteral,
       isOperator,
       length: cursor - start,
     }
   }
 
-  let ticks = 0
-  let value
+  const { value } = readPacket()
 
-  const packet = readPacket()
-
-  return part2 ? packet.value : versionSum
+  return part2 ? value : versionSum
 }
