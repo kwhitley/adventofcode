@@ -23,24 +23,19 @@ export const run = (input, part2) => {
 
     while (inPlay(pos)) {
       advance(pos, v)
-      if (inBounds(...pos)) return [maxY]
+      if (inBounds(...pos)) return maxY
     }
 
     return false
   }
 
-  let ticks = 0
-
-  forX: for (let xv=0; xv<target[0][1]*1.1; xv++) {
-    forY: for (let yv=-200; yv<200; yv++) {
-      ticks++
-      if (hit = play([xv, yv], target)) {
+  forX: for (let xv=0; xv<target[0][1]*1.01; xv++) {
+    forY: for (let yv=target[1][0]; yv<Math.abs(target[1][0]); yv++) {
+      if ((hit = play([xv, yv], target)) !== false) {
         hits.push(hit)
       }
     }
   }
 
-  console.log('scanned', ticks, 'velocities')
-
-  return part2 ? hits.length : Math.max(...hits.map(h => h[0]))
+  return part2 ? hits.length : Math.max(...hits)
 }
