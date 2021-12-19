@@ -41,7 +41,7 @@ describe('DAY 18', () => {
     })
 
     it('FINAL', () => {
-      expect(doHomework(actual, true)).toEqual(3993)
+      expect(doHomework(actual, true)).toEqual(4624)
     })
   })
 })
