@@ -4,7 +4,7 @@ import actual from './input'
 // SAMPLE INPUT
 const sample1 = `D2FE28`
 
-describe('DAY 16', () => {
+describe('DAY 17', () => {
   describe('part 1', () => {
     it('should do a thing', () => {
       expect(challenge.run('target area: x=20..30, y=-10..-5')).toEqual(45)
