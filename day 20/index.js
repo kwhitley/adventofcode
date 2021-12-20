@@ -25,15 +25,15 @@ const crop = (grid, bounds, steps) => {
   return g2
 }
 
-const enhance = (grid, bounds, algo, step, inverse) => {
+const enhance = (grid, bounds, algo, steps) => {
   const lut = {}
   const fill = Number(algo[0])
   const [top, right, bottom, left] = bounds
   const g2 = {}
   const spread = range(3, { from: -1 })
 
-  for (let l=top-70; l<bottom+70; l++) {
-    for (let c=left-70; c<right+70; c++) {
+  for (let l=top-100; l<bottom+100; l++) {
+    for (let c=left-100; c<right+100; c++) {
       let newChar
       const subgrid = spread.map(y => spread.map(x => grid[l+y]?.[c+x] || 0)).flat().join('')
 
@@ -50,8 +50,7 @@ const enhance = (grid, bounds, algo, step, inverse) => {
 }
 
 export const process = (input, steps = 2) => {
-  input = input.replace(/\./g, 0).replace(/#/g, 1)
-  let [algo, grid] = input.split('\n\n') //.map(line => line.split('').map(numbers))
+  let [algo, grid] = input.replace(/\./g, 0).replace(/#/g, 1).split('\n\n')
   grid = grid
           .split('\n')
           .map(line => line.split('').map(Number))
@@ -60,7 +59,7 @@ export const process = (input, steps = 2) => {
   const bounds = getBounds(grid)
 
   for (let s=0; s<steps; s++) {
-    grid = enhance(grid, bounds, algo, s, s % 2)
+    grid = enhance(grid, bounds, algo)
   }
 
   grid = crop(grid, bounds, steps)
