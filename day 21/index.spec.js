@@ -12,7 +12,7 @@ describe('DAY 21', () => {
     })
 
     it('FINAL', () => {
-      expect(run(actual)).toEqual(1)
+      expect(run(actual)).toEqual(995904)
     })
   })
 
