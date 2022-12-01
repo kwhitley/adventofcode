@@ -1,40 +1,43 @@
-import * as day1 from '.'
-import { numberify } from '../utils/numberify'
+import { part1, part2 } from '.'
 import { input } from './input'
 
 // SAMPLE INPUT
-const sample = numberify(`199
-200
-208
-210
-200
-207
-240
-269
-260
-263`)
+const sample = `1000
+2000
+3000
+
+4000
+
+5000
+6000
+
+7000
+8000
+9000
+
+10000`
 
 // ACTUAL INPUT
-const actual = numberify(input)
+const actual = input
 
 describe('DAY 1', () => {
-  describe('part 1', () => {
-    it('should reposition according to commands', () => {
-      expect(day1.detectIncreases(sample)).toBe(7)
+  describe('part 1 - should get max load', () => {
+    it('sample', () => {
+      expect(part1(sample)).toBe(24000)
     })
 
-    it('FINAL', () => {
-      expect(day1.detectIncreases(actual)).toBe(1195)
+    it('actual', () => {
+      expect(part1(actual)).toBe(67633)
     })
   })
 
-  describe('part 2', () => {
-    it('should count the number of increases', () => {
-      expect(day1.sweep(sample)).toBe(5)
+  describe('part 2 - should get sum of top 3 max loads', () => {
+    it('sample', () => {
+      expect(part2(sample)).toBe(45000)
     })
 
-    it('FINAL', () => {
-      expect(day1.sweep(actual)).toBe(1235)
+    it('actual', () => {
+      expect(part2(actual)).toBe(199628)
     })
   })
 })
