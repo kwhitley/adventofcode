@@ -1,5 +1,5 @@
 import { part1, part2 } from '.'
-import { input } from './input'
+import { actual } from './input'
 
 // SAMPLE INPUT
 const sample = `1000
@@ -16,9 +16,6 @@ const sample = `1000
 9000
 
 10000`
-
-// ACTUAL INPUT
-const actual = input
 
 describe('DAY 1', () => {
   describe('part 1 - should get max load', () => {

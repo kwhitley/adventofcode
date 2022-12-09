@@ -1,4 +1,4 @@
-export const input = `8462
+export const actual = `8462
 6981
 3714
 4409
