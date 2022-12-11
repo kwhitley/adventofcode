@@ -151,12 +151,12 @@ noop`
 
 describe('DAY 10', () => {
   describe('part 1', () => {
-    it('sample', () => {
-      expect(part1(sample)).toBe(13140)
-    })
+    // it('sample', () => {
+    //   expect(part1(sample)).toBe(13140)
+    // })
 
-    it('actual', () => {
-      expect(part1(actual)).toBe(14040) // 1467 1696
-    })
+    // it('actual', () => {
+    //   expect(part1(actual)).toBe(14040) // 1467 1696
+    // })
   })
 })
