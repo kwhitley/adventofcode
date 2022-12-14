@@ -5,18 +5,18 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --verbose --coverage .",
-    "dev": "jest --verbose --watch './day 13'"
+    "dev": "jest --verbose --watch './day 14'"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kwhitley/aoc-2021.git"
+    "url": "git+https://github.com/kwhitley/adventofcode.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kwhitley/aoc-2021/issues"
+    "url": "https://github.com/kwhitley/adventofcode/issues"
   },
-  "homepage": "https://github.com/kwhitley/aoc-2021#readme",
+  "homepage": "https://github.com/kwhitley/adventofcode#readme",
   "jest": {
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
