@@ -1,1 +1,1 @@
-export const YEAR = 2022
+export const YEAR = 2023

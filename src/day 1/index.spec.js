@@ -1,8 +1,12 @@
-import { DAY, actual, part1, transforms } from '.'
-import { processInput } from '../lib'
+import { part1 } from '.'
+import { processInput, getInput } from '../lib'
+
+// SET UP DAY PROJECT
+export const DAY = 1
+export const transforms = ['\n\n', '\n', Number]
 
 // SAMPLE INPUT
-const RAW_SAMPLE = `1000
+const RAW_SAMPLE1 = `1000
 2000
 3000
 
@@ -17,19 +21,28 @@ const RAW_SAMPLE = `1000
 
 10000`
 
-describe(`DAY ${DAY}`, () => {
-  // ready-to-use sample
-  const sample1 = processInput(RAW_SAMPLE, transforms || [])
+// sample data loads
+const sample1 = processInput(RAW_SAMPLE1, transforms || [])
 
+// actual data load
+const actual = await getInput(DAY, transforms)
+
+describe(`DAY ${DAY}`, () => {
   describe('part 1', () => {
     it('sample', () => {
-      expect(part1(sample1)).toBe(24000)
+      expect(part1(sample1)).toBe(true)
+    })
+    it('actual', () => {
+      expect(part1(actual)).toBe(true)
     })
   })
 
-  describe('part 2', () => {
-    it('sample', () => {
-      expect(part1(actual)).toBe(67633)
-    })
-  })
+  // describe('part 2', () => {
+  //   it('sample', () => {
+  //     expect(part2(sample1)).toBe(true)
+  //   })
+  //   it('actual', () => {
+  //     expect(part2(actual)).toBe(true)
+  //   })
+  // })
 })
