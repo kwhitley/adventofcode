@@ -1,6 +1,6 @@
 // dedicated input processing layer for easy splits and transforms
 export function processInput(input, operations, index = 0) {
-  if (index >= operations.length) return input
+  if (!input || index >= operations.length) return input
 
   const op = operations[index]
 
