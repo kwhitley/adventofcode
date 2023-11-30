@@ -1,8 +1,12 @@
 import { sum } from 'supergeneric/sum'
+import { getInput, processInput } from '../lib'
+
+export const DAY = 1
+export const transforms = ['\n\n', '\n', Number]
+export const actual = await getInput(DAY, transforms)
 
 const getLoads = input => input
-                            .split('\n\n')
-                            .map(load => sum(load.split('\n').map(Number)))
+                            .map(sum)
                             .sort((a, b) => b - a)
 
 export const part1 = input => getLoads(input)[0]
