@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --verbose --coverage .",
-    "dev": "jest --verbose --watch './day 15'"
+    "dev": "jest --verbose --watch './day 16'"
   },
   "repository": {
     "type": "git",
