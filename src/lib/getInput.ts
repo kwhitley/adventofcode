@@ -21,6 +21,7 @@ export const getInput = async (day: number, operations: SplitType[] = []) => {
       'cookie': 'session=53616c7465645f5ff7ff6830b23951491ccab3f62c84eedfe6841a47d406b22f4fc8970873dcd5779ff88f0c3deae14551df5917f85b86a2ea7c00a0ca28f474'
     }
   }).get(`https://adventofcode.com/${YEAR}/day/${day}/input`)
+    .then(r => r.trim())
     .catch(({ status, message }) => {
       console.log('Error Fetching Input', { status, message })
     })
