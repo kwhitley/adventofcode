@@ -1,7 +1,6 @@
-# adventofcode
-Advent of Code 2023
+# Advent of Code - 2023
 
-# Getting Started
+### Getting Started
 1. **Install dependencies:** `yarn`, `npm install`, or `pnpm install`
 1. **Run the dev server:** `yarn dev`, `npm run dev`, or `pnpm dev`
 
