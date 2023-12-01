@@ -1,5 +1,5 @@
 import { part1, part2 } from '.'
-import { processInput, getInput } from '../lib'
+import { getInput, processInput } from '../lib'
 
 // SET UP DAY PROJECT
 export const DAY = 1

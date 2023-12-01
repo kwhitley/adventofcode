@@ -16,15 +16,19 @@ export const getInput = async (day: number, operations: SplitType[] = []) => {
 
   if (existing) return processInput(existing, operations)
 
-  const data = await fetcher({
-    headers: {
-      'cookie': 'session=53616c7465645f5ff7ff6830b23951491ccab3f62c84eedfe6841a47d406b22f4fc8970873dcd5779ff88f0c3deae14551df5917f85b86a2ea7c00a0ca28f474'
-    }
-  }).get(`https://adventofcode.com/${YEAR}/day/${day}/input`)
-    .then(r => r.trim())
-    .catch(({ status, message }) => {
-      console.log('Error Fetching Input', { status, message })
-    })
+  // get SESSION variable from .env or process
+  const { SESSION } = process.env
+  if (!SESSION) {
+    throw Error('Please add a SESSION variable to your local .env file or process variables')
+  }
+
+  // use this to fetch the specific day's input
+  const data = await fetcher({ headers: { 'cookie': `session=${SESSION}` } })
+                      .get(`https://adventofcode.com/${YEAR}/day/${day}/input`)
+                      .then(r => r.trim())
+                      .catch(({ status, message }) => {
+                        console.log('Error Fetching Input', { status, message })
+                      })
 
   // write in async
   data && writeToCache(key, data)
