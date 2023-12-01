@@ -19,11 +19,11 @@ export const part2 = input => {
         [i, line.indexOf(digit)],
         [i, line.lastIndexOf(i)],
         [i, line.lastIndexOf(digit)],
-      ].filter(([_, i]) => i !== -1).sort((a, b) => a[1] - b[1])
+      ].filter(([_, i]) => i !== -1)
     ).flat().sort((a, b) => a[1] - b[1])
 
     const left = locations.shift()[0]
-    const right = locations.length ? locations.pop()[0] : left
+    const right = locations.pop()?.[0] ?? left
 
     return Number(left + '' + right)
   }))
