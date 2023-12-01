@@ -1,4 +1,4 @@
-import { sum } from 'supergeneric'
+import { sum } from 'supergeneric/sum'
 
 export const part1 = input => {
   return sum(input.map(line => {
