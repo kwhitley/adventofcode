@@ -1,13 +1,11 @@
 import { sum } from 'supergeneric/sum'
 
-export const part1 = input => {
-  return sum(input.map(line => {
-    const first = line.replace(/^[^\d]*(\d).*$/, '$1')
-    const last = line.replace(/^.*(\d)[^\d]*$/, '$1')
+export const part1 = input =>
+  sum(input.map(line => {
+    const [_, first, last = first] = line.match(/^[^\d]*(\d).*?(\d)?[^\d]*$/)
 
     return Number(first + last)
   }))
-}
 
 export const part2 = input => {
   const digits = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
