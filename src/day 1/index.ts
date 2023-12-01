@@ -1,16 +1,14 @@
-import { sum } from 'supergeneric/sum'
-
 export const part1 = input =>
-  sum(input.map(line => {
+  input.map(line => {
     const [_, first, last = first] = line.match(/^[^\d]*(\d).*?(\d)?[^\d]*$/)
 
     return Number(first + last)
-  }))
+  }).reduce((a, b) => a + b)
 
 export const part2 = input => {
   const digits = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
 
-  return sum(input.map(line => {
+  return input.map(line => {
     const locations = digits.map((digit, i) =>
       [
         [i, line.indexOf(i)],
@@ -24,5 +22,5 @@ export const part2 = input => {
     const right = locations.pop()?.[0] ?? left
 
     return Number(left + '' + right)
-  }))
+  }).reduce((a, b) => a + b)
 }
