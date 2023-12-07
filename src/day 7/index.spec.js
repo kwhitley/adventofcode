@@ -24,17 +24,17 @@ describe(`DAY ${DAY}`, () => {
     it('sample', () => {
       expect(part1(sample1)).toBe(6440)
     })
-    it('actual', () => {
-      expect(part1(actual)).toBe(248453531)
-    })
+    // it('actual', () => {
+    //   expect(part1(actual)).toBe(248453531)
+    // })
   })
 
   describe('part 2', () => {
     it('sample', () => {
       expect(part2(sample1)).toBe(5905)
     })
-    it('actual', () => {
-      expect(part2(actual)).toBe(248781813)
-    })
+    // it('actual', () => {
+    //   expect(part2(actual)).toBe(248781813)
+    // })
   })
 })

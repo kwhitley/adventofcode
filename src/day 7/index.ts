@@ -7,98 +7,76 @@ const STRENGTH = [
   cards => cards[0][1] === 2 && cards[1][1] === 1, // one pair
   cards => true, // high card
 ]
+const CARD_ORDER = '23456789TJQKA'
+const CARD_ORDER2 = 'J23456789TQKA'
 
-export const part1 = (input) => {
-  const CARD_ORDER = '23456789TJQKA'
+export const part1 = (input) =>
+  input
+    .map(h => [...h, 0])
+    .map(hand => {
+      const [cards, bid] = hand
+      const dist = Object.entries(cards
+        .split('')
+        .reduce((acc, card) => (acc[card] = acc[card]+1 || 1) && acc, {})
+      ).sort(([,a], [,b]) => b - a)
 
-  const hands = input
-                  .map(h => [...h, 0])
-                  .map(hand => {
-                    const [cards, bid] = hand
-                    const dist = Object.entries(cards
-                      .split('')
-                      .reduce((acc, card) => (acc[card] = acc[card]+1 || 1) && acc, {})
-                    ).sort(([,a], [,b]) => b - a)
+      return [cards, bid, dist]
+    })
+    .sort(([aC,,a], [bC,,b]) => {
+      const baseRankA = STRENGTH.findIndex((fn => fn(a)))
+      const baseRankB = STRENGTH.findIndex((fn => fn(b)))
 
-                    return [cards, bid, dist]
-                  })
-                  .sort(([aC,,a], [bC,,b]) => {
-                    const baseRankA = STRENGTH.findIndex((fn => fn(a)))
-                    const baseRankB = STRENGTH.findIndex((fn => fn(b)))
+      if (baseRankA > baseRankB) return -1
+      if (baseRankA < baseRankB) return 1
 
-                    if (baseRankA > baseRankB) return -1
-                    if (baseRankA < baseRankB) return 1
+      for (let i=0; i<5; i++) {
+        const rankA = CARD_ORDER.indexOf(aC[i]?.[0])
+        const rankB = CARD_ORDER.indexOf(bC[i]?.[0])
 
-                    for (let i=0; i<5; i++) {
-                      const rankA = CARD_ORDER.indexOf(aC[i]?.[0])
-                      const rankB = CARD_ORDER.indexOf(bC[i]?.[0])
+        if (rankA > rankB) return 1
+        if (rankA < rankB) return -1
+      }
 
-                      if (rankA > rankB) return 1
-                      if (rankA < rankB) return -1
-                    }
+      return 0
+    }).reduce((total, [hand, bid], a) => total += bid * (a+1), 0)
 
-                    return 0
-                  })
 
-  let winnings = 0
-  let rank = 1
+export const part2 = (input) =>
+  input
+    .map(h => [...h, 0])
+    .map(hand => {
+      const [cards, bid] = hand
+      const dist = Object.entries(cards
+        .split('')
+        .sort((a, b) => CARD_ORDER2.indexOf(b) - CARD_ORDER2.indexOf(a))
+        .reduce((acc, card) => {
+          if (card !== 'J') {
+            return (acc[card] = acc[card]+1 || 1) && acc
+          }
+          const targetIndex = Object.entries(acc).sort(([,a], [,b]) => b - a)?.[0]?.[0]
+          acc[targetIndex ?? 'A']++ // if no other cards, just make it an Ace
 
-  for (const [hand, bid] of hands) {
-    winnings += bid * rank
-    rank++
-  }
+          return acc
+        }, {})
+      ).sort(([,a], [,b]) => b - a)
 
-  return winnings
-}
+      return [cards, bid, dist]
+    })
+    .sort(([aC,,a], [bC,,b]) => {
+      const baseRankA = STRENGTH.findIndex(fn => fn(a))
+      const baseRankB = STRENGTH.findIndex(fn => fn(b))
 
-export const part2 = (input) => {
-  const CARD_ORDER = 'J23456789TQKA'
+      if (baseRankA > baseRankB) return -1
+      if (baseRankA < baseRankB) return 1
 
-  const hands = input
-                  .map(h => [...h, 0])
-                  .map(hand => {
-                    const [cards, bid] = hand
-                    const dist = Object.entries(cards
-                      .split('')
-                      .sort((a, b) => CARD_ORDER.indexOf(b) - CARD_ORDER.indexOf(a))
-                      .reduce((acc, card) => {
-                        if (card !== 'J') {
-                          return (acc[card] = acc[card]+1 || 1) && acc
-                        }
-                        const targetIndex = Object.entries(acc).sort(([,a], [,b]) => b - a)?.[0]?.[0]
-                        acc[targetIndex ?? 'A']++ // if no other cards, just make it an Ace
+      for (let i=0; i<5; i++) {
+        const rankA = CARD_ORDER2.indexOf(aC[i]?.[0])
+        const rankB = CARD_ORDER2.indexOf(bC[i]?.[0])
 
-                        return acc
-                      }, {})
-                    ).sort(([,a], [,b]) => b - a)
+        if (rankA > rankB) return 1
+        if (rankA < rankB) return -1
+      }
 
-                    return [cards, bid, dist]
-                  })
-                  .sort(([aC,,a], [bC,,b]) => {
-                    const baseRankA = STRENGTH.findIndex(fn => fn(a))
-                    const baseRankB = STRENGTH.findIndex(fn => fn(b))
-
-                    if (baseRankA > baseRankB) return -1
-                    if (baseRankA < baseRankB) return 1
-
-                    for (let i=0; i<5; i++) {
-                      const rankA = CARD_ORDER.indexOf(aC[i]?.[0])
-                      const rankB = CARD_ORDER.indexOf(bC[i]?.[0])
-
-                      if (rankA > rankB) return 1
-                      if (rankA < rankB) return -1
-                    }
-
-                    return 0
-                  })
-
-  let winnings = 0
-  let rank = 1
-
-  for (const [hand, bid] of hands) {
-    winnings += bid * rank
-    rank++
-  }
-
-  return winnings
-}
+      return 0
+    })
+    .reduce((total, [hand, bid], a) => total += bid * (a+1), 0)
