@@ -1,16 +1,4 @@
-export const part1 = (input) => {
-  let [path, instructions] = input.split('\n\n')
-  path = path.split('')
-  instructions = instructions
-                  .split('\n')
-                  .reduce((acc, l) => {
-                    const [key, L, R] = l.match(/\w{3}/g).slice(0, 3)
-                    acc[key] = { L, R }
-
-                    return acc
-                  }, {})
-
-  let steps = 0
+export const part1 = ({ path, instructions }, steps = 0) => {
   let pos = instructions.AAA
 
   while (true) {
@@ -18,26 +6,12 @@ export const part1 = (input) => {
       pos = instructions[pos[dir]]
       steps++
 
-      if (pos === instructions.ZZZ) {
-        return steps
-      }
+      if (pos === instructions.ZZZ) return steps
     }
   }
 }
 
-export const part2 = (input) => {
-  let [path, instructions] = input.split('\n\n')
-  path = path.split('')
-  instructions = instructions
-                  .split('\n')
-                  .reduce((acc, l) => {
-                    const [key, L, R] = l.match(/\w{3}/g).slice(0, 3)
-                    acc[key] = { L, R }
-
-                    return acc
-                  }, {})
-
-  let steps = 1
+export const part2 = ({ path, instructions }, steps = 1) => {
   let pos = Object.entries(instructions).filter(([value, index]) => value[2] === 'A')
   let escapeTurns = pos.map(v => 0)
 

@@ -1,9 +1,22 @@
 import { part1, part2 } from '.'
-import { getInput, processInput } from '../lib'
+import { getInput } from '../lib'
 
 // SET UP DAY PROJECT
 export const DAY = 8
-export const transforms = []
+
+const processInput = input => {
+  let [path, instructions] = input.split('\n\n')
+  path = path.split('')
+  instructions = instructions
+                  .split('\n')
+                  .reduce((acc, l) => {
+                    const [key, L, R] = l.match(/\w{3}/g).slice(0, 3)
+                    acc[key] = { L, R }
+
+                    return acc
+                  }, {})
+  return { path, instructions }
+}
 
 // SAMPLE INPUT
 const RAW_SAMPLE1 = `RL
@@ -27,11 +40,11 @@ const RAW_SAMPLE2 = `LR
 XXX = (XXX, XXX)`
 
 // sample data loads
-const sample1 = await processInput(RAW_SAMPLE1, transforms || [])
-const sample2 = await processInput(RAW_SAMPLE2, transforms || [])
+const sample1 = processInput(RAW_SAMPLE1)
+const sample2 = processInput(RAW_SAMPLE2)
 
 // actual data load
-const actual = await getInput(DAY, transforms)
+const actual = processInput(await getInput(DAY))
 
 describe(`DAY ${DAY}`, () => {
   describe('part 1', () => {
